@@ -270,7 +270,7 @@ def _macos_install():
 
     # Just call the helper script which covers everything
     service_sh = _HERE / "macos_service.sh"
-    shell_script = f'"{service_sh}" "$1"'
+    shell_script = f'{service_sh}'
 
     (contents / "document.wflow").write_text(
         _build_document_wflow(shell_script), encoding="utf-8")
