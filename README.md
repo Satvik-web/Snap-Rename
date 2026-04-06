@@ -55,8 +55,8 @@ Once installed, you can use the `srename` command directly in your terminal:
 
 ## Web Version
 Snap Rename is fully functional in the browser:
-- Navigate to the `Website/` directory and open `index.html`.
-- [Open Web App](file:///Users/satvikrajnarayanan/Snap%20Rename/Website/index.html)
+- [Open Web App](https://satvik-web.github.io/Snap-Rename/)
+- Click On Launch Web Experience.
 - It uses the modern File System Access API, allowing you to pick a local folder and rename files with zero installation. Recommended for Chromium-based browsers.
 
 ## Key Features
