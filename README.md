@@ -97,3 +97,6 @@ Snap Rename includes built-in "Spotlight" style searching to help you navigate f
 In the Terminal UI, you can trigger the Command Palette by pressing Ctrl + P (or Cmd + P on macOS) or by clicking the small circle icon in the top-left corner.
 - **Search Actions**: Type the name of any tool (e.g., "Smart", "Clean") or action (e.g., "Apply", "Undo") to jump to it instantly.
 - **No Shortcuts Needed**: If you forget a keyboard binding, the palette lists all available commands in a searchable list.
+
+# Contribution
+Mention All kinds of issues, odd behaviour in the issues section.
