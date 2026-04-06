@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snap Rename</title>
+  <meta name="description" content="A powerful batch file renaming tool for the web.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+  <!-- ══════════ PANE 1: SIDEBAR ══════════ -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <img src="logo.png" alt="Snap Rename Logo" onerror="this.style.display='none'">
+      <span>Snap Rename</span>
+    </div>
+
+    <div class="section-label">TOOLS</div>
+
+    <button class="nav-btn active" data-idx="0">Enhanced Clean Filename</button>
+    <button class="nav-btn" data-idx="1">Smart Find &amp; Replace</button>
+    <button class="nav-btn" data-idx="2">Normal Find &amp; Replace</button>
+    <button class="nav-btn" data-idx="3">Prefix / Suffix</button>
+    <button class="nav-btn" data-idx="4">Sequential Numbering</button>
+    <button class="nav-btn" data-idx="5">Extended Smart Metadata</button>
+
+    <div class="pipeline-section">
+      <div class="section-label" style="padding-top:0">ACTIVE PIPELINE</div>
+      <ul id="op-list"></ul>
+      <button class="btn-action" id="btn-rem-op">Remove Step</button>
+    </div>
+  </aside>
+
+  <!-- ══════════ PANE 2: FILE LIST ══════════ -->
+  <section id="file-pane">
+    <div class="file-toolbar">
+      <button class="btn-action" id="btn-workspace">Directory...</button>
+      <span id="lbl-workspace">No workspace selected</span>
+      <label for="combo-sort" style="margin-left:auto; white-space:nowrap">Sort by:</label>
+      <select id="combo-sort" style="width:150px">
+        <option>Alphabetical</option>
+        <option>Date Added</option>
+        <option>Date Modified</option>
+        <option>Size</option>
+        <option>Extension</option>
+      </select>
+      <button class="btn-action" id="btn-toggle-preview">Hide Preview</button>
+    </div>
+
+    <div class="file-table-wrap">
+      <table id="file-table">
+        <thead>
+          <tr>
+            <th style="min-width:200px">Name</th>
+            <th>Date Modified</th>
+            <th>Size</th>
+            <th>Kind</th>
+          </tr>
+        </thead>
+        <tbody id="file-table-body"></tbody>
+      </table>
+    </div>
+
+    <div class="file-bottom-bar">
+      <button class="btn-action" id="btn-clear">Clear Workspace</button>
+      <button class="btn-action" id="btn-undo" style="margin-left:auto">Undo Last Rename</button>
+    </div>
+  </section>
+
+  <!-- ══════════ PANE 3: PREVIEW ══════════ -->
+  <aside id="preview-pane">
+    <div id="preview-icon">📁</div>
+    <div id="preview-title">No Selection</div>
+    <div id="preview-subtitle">Select a file to see info</div>
+    <div style="font-size:12px;color:#8c8c9e;margin-top:4px">Information</div>
+    <div class="info-card">
+      <div id="preview-created">Created  --</div>
+      <div id="preview-modified">Modified  --</div>
+      <div id="preview-size">Size  --</div>
+      <div id="preview-kind">Kind  --</div>
+    </div>
+  </aside>
+
+  <!-- ══════════ PANE 4: TOOL SETTINGS ══════════ -->
+  <section id="tool-pane">
+    <div id="tool-title">Enhanced Clean Filename</div>
+
+    <!-- 0: Enhanced Clean -->
+    <div class="tool-page" id="page-clean">
+      <div class="option-card">
+        <label><input type="checkbox" id="chk-clean-spaces"> Remove Extra Spaces</label>
+        <label><input type="checkbox" id="chk-clean-dups"> Remove Duplicate Words</label>
+        <label><input type="checkbox" id="chk-clean-special"> Remove Special Characters</label>
+        <label><input type="checkbox" id="chk-clean-nums"> Remove All Numbers</label>
+        <label><input type="checkbox" id="chk-clean-letters"> Remove All Letters</label>
+        <div style="margin-top:4px">Normalize format to:</div>
+        <select id="combo-clean-norm">
+          <option value="">None</option>
+          <option>Spaces</option>
+          <option>Dashes</option>
+          <option>Underscores</option>
+        </select>
+        <div>Change casing to:</div>
+        <select id="combo-clean-case">
+          <option value="">None</option>
+          <option>Capitalize First Letters</option>
+          <option>Uppercase</option>
+          <option>Lowercase</option>
+        </select>
+        <div class="live-preview" id="clean-preview">Live Example: file.ext ➔ file.ext</div>
+      </div>
+    </div>
+
+    <!-- 1: Smart Find & Replace -->
+    <div class="tool-page hidden" id="page-smart">
+      <div class="option-card">
+        <div>Find Pattern:</div>
+        <select id="combo-find">
+          <option>Numbers</option>
+          <option>Letters</option>
+          <option>Spaces</option>
+          <option>Special Characters</option>
+          <option>Dates</option>
+          <option>Brackets / Parentheses</option>
+          <option>Consecutive Spaces</option>
+          <option>Underscores / Dashes</option>
+          <option>File Extension</option>
+          <option>Non-ASCII Characters</option>
+          <option>Leading/Trailing Spaces</option>
+          <option>Leading Numbers</option>
+          <option>Trailing Numbers</option>
+          <option>Leading/Trailing Underscores</option>
+          <option>Capitalize First Letter</option>
+          <option>Uppercase All Letters</option>
+          <option>Lowercase All Letters</option>
+          <option>Swap Words</option>
+          <option>Character Position</option>
+          <option>Custom Exact</option>
+          <option>Custom Regex</option>
+        </select>
+        <input type="text" id="inp-find-custom" placeholder="Custom pattern..." class="hidden">
+        <div id="char-pos-group" class="hidden">
+          <div style="margin-bottom:4px">Insert after character position (1-based):</div>
+          <input type="number" id="spin-char-pos" min="1" max="999" value="1">
+        </div>
+        <div>Action:</div>
+        <select id="combo-act">
+          <option>Remove</option>
+          <option>Replace With</option>
+          <option>Insert Before</option>
+          <option>Insert After</option>
+          <option>Standardize</option>
+          <option>Extract</option>
+          <option>Insert (Stem Only)</option>
+          <option>Insert (with Extension)</option>
+        </select>
+        <input type="text" id="inp-act-custom" placeholder="Replacement / insert text..." class="hidden">
+        <div class="live-preview" id="smart-preview">Live Example: file.ext ➔ file.ext</div>
+      </div>
+    </div>
+
+    <!-- 2: Normal Find & Replace -->
+    <div class="tool-page hidden" id="page-normal">
+      <div class="option-card">
+        <div>Find:</div>
+        <input type="text" id="inp-n-find" placeholder="Exact phrase to find">
+        <div>Replace With:</div>
+        <input type="text" id="inp-n-rep" placeholder="Leave empty to delete">
+        <label><input type="checkbox" id="chk-n-case"> Case Sensitive</label>
+        <div class="live-preview" id="normal-preview">Live Example: file.ext ➔ file.ext</div>
+      </div>
+    </div>
+
+    <!-- 3: Prefix / Suffix -->
+    <div class="tool-page hidden" id="page-presuf">
+      <div class="option-card">
+        <div>Prefix Add:</div>
+        <input type="text" id="inp-prefix" placeholder="Prefix">
+        <div>Suffix Add:</div>
+        <input type="text" id="inp-suffix" placeholder="Suffix">
+        <div class="live-preview" id="ps-preview">Live Example: file.ext ➔ file.ext</div>
+      </div>
+    </div>
+
+    <!-- 4: Sequential Numbering -->
+    <div class="tool-page hidden" id="page-num">
+      <div class="option-card">
+        <div>Placement:</div>
+        <div class="row">
+          <label><input type="radio" name="num-pos" id="radio-prefix"> At Front</label>
+          <label><input type="radio" name="num-pos" id="radio-suffix" checked> At End</label>
+        </div>
+        <div>Base Name:</div>
+        <input type="text" id="inp-num-base" placeholder="Leave blank to keep original">
+        <div class="row">
+          <label style="flex:unset">Start:</label>
+          <input type="number" id="spin-start" value="1" min="0" style="width:70px">
+          <label style="flex:unset">Pad:</label>
+          <input type="number" id="spin-pad" value="2" min="1" max="10" style="width:60px">
+        </div>
+        <div class="live-preview" id="num-preview">Live Example: file.ext ➔ file.ext</div>
+      </div>
+    </div>
+
+    <!-- 5: Extended Smart Metadata -->
+    <div class="tool-page hidden" id="page-meta">
+      <div class="option-card">
+        <div>Preset Category:</div>
+        <select id="combo-meta-preset">
+          <option>All Files</option>
+          <option>Images</option>
+          <option>Audio / Songs</option>
+          <option>Videos</option>
+          <option>Movies</option>
+          <option>TV Shows</option>
+          <option>Podcasts</option>
+          <option>Books / PDFs</option>
+          <option>Scanned Documents</option>
+        </select>
+        <input type="text" id="inp-template" placeholder="Template syntax">
+        <div class="tags-hint">Tags: {type}, {created}, {modified}, {size_kb}, {artist}, {album}, {track}, {title}, {year}, {genre}, {show}, {season}, {episode}, {author}, {original}</div>
+        <div class="live-preview" id="meta-preview">Live Example: file.ext ➔ file.ext</div>
+      </div>
+    </div>
+
+    <button class="btn-action" id="btn-add-op" style="margin-top:6px">+ Add to Pipeline</button>
+    <div style="flex:1"></div>
+    <button id="btn-apply">Apply Active Renames</button>
+  </section>
+
+</div>
+
+<!-- ══════════ CUSTOM MODAL ══════════ -->
+<div id="modal-overlay" class="modal-overlay hidden">
+  <div class="modal-box" id="modal-box">
+    <div id="modal-icon" style="font-size:32px;text-align:center;margin-bottom:8px"></div>
+    <div id="modal-title" class="modal-title"></div>
+    <div id="modal-message" class="modal-message"></div>
+    <div id="modal-actions" class="modal-actions"></div>
+  </div>
+</div>
+
+<script src="utils.js"></script>
+<script src="engine.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
