@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Snap Rename — Welcome</title>
+  <meta name="description" content="A powerful cross-platform file renaming utility available on Web, Windows, macOS, and Linux." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <link rel="icon" type="image/png" href="Documentation/logo.png">
+
+  <style>
+    :root {
+      --bg-color: #0f1115;
+      --surface: #1e2128;
+      --surface-hover: #2a2e37;
+      --text: #ffffff;
+      --text-muted: #949ba4;
+      --primary: #6c63ff;
+      --primary-hover: #5a52d6;
+      --border: #353a45;
+      --radius: 12px;
+      --transition: 0.2s ease-in-out;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text);
+      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Ambient Background Glow */
+    .glow {
+      position: fixed;
+      top: -20vh;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80vw;
+      height: 60vh;
+      background: radial-gradient(circle at center, rgba(108, 99, 255, 0.15) 0%, rgba(15, 17, 21, 0) 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 90%;
+      margin: 4rem auto;
+      text-align: center;
+    }
+
+    /* Hero Section */
+    .hero {
+      margin-bottom: 4rem;
+      animation: fadeInDown 0.8s ease-out;
+    }
+    
+    .hero img {
+      width: 100px;
+      height: 100px;
+      margin-bottom: 1.5rem;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 2rem auto;
+    }
+
+    /* Main Core Buttons (App & Docs) */
+    .core-actions {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+      margin-bottom: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: var(--radius);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+      box-shadow: 0 4px 15px rgba(108, 99, 255, 0.3);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(108, 99, 255, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--surface-hover);
+      transform: translateY(-2px);
+    }
+
+    /* Platform Downloads Grid */
+    h2.section-title {
+      font-size: 1.75rem;
+      margin-bottom: 2rem;
+      font-weight: 700;
+    }
+
+    .downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      animation: fadeInUp 0.8s ease-out forwards;
+      opacity: 0;
+      animation-delay: 0.2s;
+    }
+
+    .download-card {
+      background-color: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: var(--text);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .download-card:hover {
+      transform: translateY(-5px);
+      background-color: var(--surface-hover);
+      border-color: var(--primary);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .platform-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .platform-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .platform-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      width: 100%;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 { font-size: 2.5rem; }
+      .core-actions { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="glow"></div>
+
+  <div class="container">
+    <div class="hero">
+      <img src="Documentation/logo.png" alt="Snap Rename Logo">
+      <h1>Snap Rename</h1>
+      <p>The ultimate cross-platform batch file renaming utility. Powerful, lightning-fast, and universally available.</p>
+      
+      <div class="core-actions">
+        <a href="Website/index.html" class="btn btn-primary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+          Launch Web Experience
+        </a>
+        <a href="Documentation/index.html" class="btn btn-secondary">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          Read the Documentation
+        </a>
+      </div>
+    </div>
+
+    <h2 class="section-title">Download Native Applications</h2>
+    
+    <div class="downloads-grid">
+      <!-- Windows -->
+      <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/windows_installer.exe" class="download-card">
+        <div class="platform-name">Windows</div>
+        <div class="platform-desc">.exe Installer for Windows 10/11</div>
+      </a>
+
+      <!-- macOS -->
+      <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/macos_install.sh" class="download-card">
+        <div class="platform-name">macOS</div>
+        <div class="platform-desc">Universal .sh script for Intel/Silicon</div>
+      </a>
+
+      <!-- Linux -->
+      <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/linux_installer.sh" class="download-card">
+        <div class="platform-name">Linux</div>
+        <div class="platform-desc">.sh installer for Debian/Ubuntu/Mint</div>
+      </a>
+
+      <!-- Python Source -->
+      <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/Python_Edition.zip" class="download-card">
+        <div class="platform-name">Python Source</div>
+        <div class="platform-desc">.zip of the raw PyQt6 source code</div>
+      </a>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>Snap Rename — Developed by satvik-web &copy; 2026</p>
+  </footer>
+
+</body>
+</html>
