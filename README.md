@@ -11,6 +11,12 @@ Snap Rename is a high-performance, cross-platform batch file renaming suite desi
 
 ## Installation and Setup
 
+### Website
+Snap Rename is fully functional in the browser:
+- [Open Web App](https://satvik-web.github.io/Snap-Rename/)
+- Click On Launch Web Experience.
+- It uses the modern File System Access API, allowing you to pick a local folder and rename files with zero installation. Recommended for Chromium-based browsers.
+
 ### Windows
 - **Installer**: [Download windows_installer.exe](https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/windows_installer.exe)
 - Run the installer to set up Snap Rename and follow on screen instructions.
