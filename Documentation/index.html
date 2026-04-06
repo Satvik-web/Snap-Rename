@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Snap Rename — Documentation</title>
+  <meta name="description" content="Complete documentation for Snap Rename — a powerful batch file renaming tool.">
+  <link rel="icon" type="image/png" href="logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header id="top-header">
+  <div class="header-inner">
+    <div class="header-logo">
+      <img src="logo.png" alt="Snap Rename Logo">
+      <div>
+        <div class="header-title">Snap Rename</div>
+        <div class="header-sub">Documentation</div>
+      </div>
+    </div>
+    <div class="search-wrap">
+      <span class="search-icon">⌕</span>
+      <input type="text" id="search-input" placeholder="Search features, patterns, tags…" autocomplete="off">
+      <kbd>⌘K</kbd>
+    </div>
+    <div class="header-actions">
+      <a href="../Website/index.html" class="btn-launch">Open App ↗</a>
+      <button id="theme-toggle" title="Toggle theme">☀️</button>
+    </div>
+  </div>
+  <div id="search-results" class="search-results hidden"></div>
+</header>
+
+<!-- ═══ LAYOUT ═══ -->
+<div class="page-layout">
+
+  <!-- Sidebar -->
+  <aside id="sidebar">
+    <nav>
+      <div class="nav-section">Getting Started</div>
+      <a href="#overview" class="nav-link active">Overview</a>
+      <a href="#download" class="nav-link">Download & Setup</a>
+      <a href="#workspace" class="nav-link">Loading a Workspace</a>
+      <a href="#file-table" class="nav-link">File Table</a>
+      <a href="#preview-pane" class="nav-link">Preview Pane</a>
+      <a href="#pipeline" class="nav-link">Pipeline</a>
+
+      <div class="nav-section">Application</div>
+      <a href="#app-overview" class="nav-link">App Overview</a>
+      <a href="#app-usage" class="nav-link">Ease of Usage</a>
+      <a href="#app-cli" class="nav-link">Terminal Commands</a>
+      <a href="#app-tui" class="nav-link">Terminal Interface</a>
+
+      <div class="nav-section">Rename Tools</div>
+      <a href="#clean" class="nav-link">Enhanced Clean</a>
+      <a href="#smart" class="nav-link">Smart Find & Replace</a>
+      <a href="#normal" class="nav-link">Normal Find & Replace</a>
+      <a href="#presuf" class="nav-link">Prefix / Suffix</a>
+      <a href="#numbering" class="nav-link">Sequential Numbering</a>
+      <a href="#metadata" class="nav-link">Extended Smart Metadata</a>
+
+      <div class="nav-section">Smart Patterns</div>
+      <a href="#patterns-numbers" class="nav-link">Numbers</a>
+      <a href="#patterns-letters" class="nav-link">Letters</a>
+      <a href="#patterns-spaces" class="nav-link">Spaces</a>
+      <a href="#patterns-special" class="nav-link">Special Characters</a>
+      <a href="#patterns-dates" class="nav-link">Dates</a>
+      <a href="#patterns-brackets" class="nav-link">Brackets</a>
+      <a href="#patterns-consec" class="nav-link">Consecutive Spaces</a>
+      <a href="#patterns-underdash" class="nav-link">Underscores / Dashes</a>
+      <a href="#patterns-ext" class="nav-link">File Extension</a>
+      <a href="#patterns-nonascii" class="nav-link">Non-ASCII</a>
+      <a href="#patterns-leadtrail" class="nav-link">Leading/Trailing Spaces</a>
+      <a href="#patterns-leadnums" class="nav-link">Leading Numbers</a>
+      <a href="#patterns-trailnums" class="nav-link">Trailing Numbers</a>
+      <a href="#patterns-leadunder" class="nav-link">Leading/Trailing _</a>
+      <a href="#patterns-capcap" class="nav-link">Capitalize First</a>
+      <a href="#patterns-upper" class="nav-link">Uppercase All</a>
+      <a href="#patterns-lower" class="nav-link">Lowercase All</a>
+      <a href="#patterns-swap" class="nav-link">Swap Words</a>
+      <a href="#patterns-charpos" class="nav-link">Character Position</a>
+      <a href="#patterns-exact" class="nav-link">Custom Exact</a>
+      <a href="#patterns-regex" class="nav-link">Custom Regex</a>
+
+      <div class="nav-section">Actions</div>
+      <a href="#actions" class="nav-link">All 8 Actions</a>
+
+      <div class="nav-section">Apply & Undo</div>
+      <a href="#apply" class="nav-link">Applying Renames</a>
+      <a href="#undo" class="nav-link">Undo</a>
+      <a href="#dragdrop" class="nav-link">Drag & Drop</a>
+      <a href="#metadata-tags" class="nav-link">Metadata Tags Reference</a>
+
+      <div class="nav-section">Open Source</div>
+      <a href="#github" class="nav-link">Source Code</a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main id="content">
+
+    <!-- ══ OVERVIEW ══ -->
+    <section id="overview" class="doc-section">
+      <div class="section-badge">Getting Started</div>
+      <h1>Snap Rename — Overview</h1>
+      <p class="lead">Snap Rename is a powerful browser-based batch file renaming tool. It lets you rename dozens of files at once using intelligent rules — from simple find & replace to complex metadata-driven templates — all with a live preview of every change before it's applied.</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <div class="feature-name">Live Preview</div>
+          <div class="feature-desc">See every rename change in real time as you configure it.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <div class="feature-name">6 Powerful Tools</div>
+          <div class="feature-desc">From simple cleanup to regex-powered smart patterns.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📋</div>
+          <div class="feature-name">Pipeline</div>
+          <div class="feature-desc">Stack multiple rename operations to run in sequence.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">↩️</div>
+          <div class="feature-name">Undo</div>
+          <div class="feature-desc">Instantly revert the last batch rename on disk.</div>
+        </div>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">App Overview</div>
+        <video controls preload="metadata" poster="">
+          <source src="Videos/website_overview.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+    
+    <!-- ══ DOWNLOAD & SETUP ══ -->
+    <section id="download" class="doc-section" data-search="download install setup windows mac linux python web">
+      <div class="section-badge">Getting Started</div>
+      <h2>Download & Setup</h2>
+      <p>Select your platform to download the latest version of Snap Rename and follow the installation instructions below.</p>
+
+      <div class="feature-grid">
+        <!-- Windows -->
+        <div class="feature-card">
+          <div class="feature-name">Windows</div>
+          <div class="feature-desc">
+            <p style="font-size: 12px; margin-bottom: 8px;">1. Download the installer.<br>2. Double-click to run.</p>
+            <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/windows_installer.exe" class="btn-launch" style="display: block; text-align: center; text-decoration: none;">Download .exe</a>
+          </div>
+        </div>
+
+        <!-- MacOS -->
+        <div class="feature-card">
+          <div class="feature-name">MacOS</div>
+          <div class="feature-desc">
+            <p style="font-size: 11px; margin-bottom: 12px; line-height: 1.6;">
+              1. Download script and open Terminal in its folder.<br>
+              2. Run <code>chmod +x macos_install.sh</code><br>
+              3. Run <code>./macos_install.sh</code>
+            </p>
+            <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/macos_install.sh" class="btn-launch" style="display: block; text-align: center; text-decoration: none;">Download .sh</a>
+          </div>
+        </div>
+
+        <!-- Linux -->
+        <div class="feature-card">
+          <div class="feature-name">Linux</div>
+          <div class="feature-desc">
+            <p style="font-size: 11px; margin-bottom: 12px; line-height: 1.6;">
+              1. Download script and open Terminal in its folder.<br>
+              2. Run <code>chmod +x linux_installer.sh</code><br>
+              3. Run <code>./linux_installer.sh</code>
+            </p>
+            <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/linux_installer.sh" class="btn-launch" style="display: block; text-align: center; text-decoration: none;">Download .sh</a>
+          </div>
+        </div>
+
+        <!-- Python -->
+        <div class="feature-card">
+          <div class="feature-name">Python</div>
+          <div class="feature-desc">
+            <p style="font-size: 11.5px; margin-bottom: 8px;">1. Extract zip.<br>2. `pip install PyQt6 textual`.<br>3. `python main.py --gui`</p>
+            <a href="https://github.com/Satvik-web/Snap-Rename/releases/download/v1.0.0/Python_Edition.zip" class="btn-launch" style="display: block; text-align: center; text-decoration: none;">Download .zip</a>
+          </div>
+        </div>
+
+        <!-- Web -->
+        <div class="feature-card">
+          <div class="feature-name">Web App</div>
+          <div class="feature-desc">
+            <p style="font-size: 12px; margin-bottom: 8px;">Browser-based. Recommended for Chromium users.</p>
+            <a href="../Website/index.html" class="btn-launch" style="display: block; text-align: center; text-decoration: none;">Open App ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ WORKSPACE ══ -->
+    <section id="workspace" class="doc-section" data-search="workspace directory folder loading open files">
+      <div class="section-badge">Getting Started</div>
+      <h2>Loading a Workspace</h2>
+      <p>Snap Rename works with a <strong>workspace folder</strong> — a directory on your computer containing the files you want to rename. The app uses the browser's File System Access API to read and write files directly on your disk (Chromium browsers only).</p>
+
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><div><strong>Click "Directory…"</strong> in the top toolbar of the file pane. A system folder picker will appear.</div></div>
+        <div class="step"><span class="step-num">2</span><div><strong>Select your folder</strong> and grant permission when the browser asks.</div></div>
+        <div class="step"><span class="step-num">3</span><div>All files in that folder load into the <strong>file table</strong> instantly. Hidden files (starting with <code>.</code>) are filtered out automatically.</div></div>
+      </div>
+
+      <div class="callout callout-info">
+        <strong>Tip:</strong> Snap Rename only reads the top-level folder — it does not recurse into subfolders.
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Loading a Workspace</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ RENAME TOOLS ══ -->
+    <section id="file-table" class="doc-section" data-search="file table sort select multi-select alphabetical date size extension">
+      <div class="section-badge">Getting Started</div>
+      <h2>File Table</h2>
+      <p>The file table shows all files in your workspace. Each row shows the file's current (or previewed new) name, date modified, size, and file type.</p>
+
+      <h3>Sorting</h3>
+      <p>Use the <strong>Sort by</strong> dropdown in the toolbar to sort files by:</p>
+      <div class="tag-grid">
+        <span class="tag">Alphabetical</span>
+        <span class="tag">Date Added</span>
+        <span class="tag">Date Modified</span>
+        <span class="tag">Size</span>
+        <span class="tag">Extension</span>
+      </div>
+
+      <h3>Selection</h3>
+      <ul>
+        <li><strong>Single click</strong> — selects that file (deselects others).</li>
+        <li><strong>Ctrl/⌘ + click</strong> — adds/removes a file from the selection.</li>
+        <li><strong>Double-click</strong> — opens the file in the default system application.</li>
+      </ul>
+
+      <h3>Colour coding</h3>
+      <p>When a rename operation is in the pipeline, filenames that <em>will change</em> are shown in <span style="color:#f5576c;font-weight:700">red</span>. Files that won't be affected remain white.</p>
+
+      <div class="video-block">
+        <div class="video-label">File Table & Sorting</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ PREVIEW PANE ══ -->
+    <section id="preview-pane" class="doc-section" data-search="preview pane file info metadata kind size created modified icon">
+      <div class="section-badge">Getting Started</div>
+      <h2>Preview Pane</h2>
+      <p>The Preview Pane (third column) shows information about the currently selected file. When multiple files are selected, it shows data for the topmost selected file.</p>
+      <ul>
+        <li><strong>File icon</strong> — emoji based on file type (🖼️ Image, 🎵 Audio, 🎬 Video, 📄 Document, etc.)</li>
+        <li><strong>File name</strong> — current name of the file.</li>
+        <li><strong>Kind & Size</strong> — file type and size in human-readable units.</li>
+        <li><strong>Created / Modified</strong> — timestamps from the file system.</li>
+      </ul>
+      <p>Click <strong>"Hide Preview"</strong> in the toolbar to collapse the pane and gain more space for the file table.</p>
+    </section>
+
+    <!-- ══ PIPELINE ══ -->
+    <section id="pipeline" class="doc-section" data-search="pipeline steps stack multiple operations order sequence add remove">
+      <div class="section-badge">Getting Started</div>
+      <h2>Pipeline</h2>
+      <p>The Pipeline lets you <strong>stack multiple rename operations</strong> and run them in sequence on every file. Operations are applied left-to-right (top-to-bottom in the sidebar list).</p>
+
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><div>Configure any tool in the right pane.</div></div>
+        <div class="step"><span class="step-num">2</span><div>Click <strong>"+ Add to Pipeline"</strong>. The step appears in the <em>Active Pipeline</em> list in the sidebar.</div></div>
+        <div class="step"><span class="step-num">3</span><div>Repeat for as many tools as needed.</div></div>
+        <div class="step"><span class="step-num">4</span><div>The <strong>file table and live previews update instantly</strong> to show cumulative results.</div></div>
+        <div class="step"><span class="step-num">5</span><div>To <strong>remove a step</strong>: click it in the pipeline list to select it (highlighted), then click <strong>"Remove Step"</strong>. If nothing is selected, the last step is removed.</div></div>
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>Example pipeline:</strong> Remove Extra Spaces → Capitalize First Letters → Add Prefix "2024_" → Add Suffix " (Final)" — all applied in one click.
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Using the Pipeline</div>
+        <video controls preload="metadata">
+          <source src="Videos/modal_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ APP OVERVIEW ══ -->
+    <section id="app-overview" class="doc-section" data-search="application windows macos linux gui parity">
+      <div class="section-badge">Application</div>
+      <h2>Native Application Overview</h2>
+      <p>Snap Rename is designed as a truly cross-platform tool. While the core engine powers every version, we provide dedicated native applications for <strong>Windows</strong>, <strong>macOS</strong>, and <strong>Linux</strong> to ensure the best performance and system integration.</p>
+
+      <div class="callout callout-info">
+        <strong>Interface Parity:</strong> The Desktop GUI is built to be 100% consistent with the Web version. Any workflow you learn in the browser will translate perfectly to the installed application.
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-name">Windows</div>
+          <div class="feature-desc">High-performance Desktop app with full system access and context menu support.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">Linux</div>
+          <div class="feature-desc">Native high-performance Desktop application for various distributions.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-name">macOS (Universal)</div>
+          <div class="feature-desc">Native Apple Silicon and Intel support with Finder Quick Action integration.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ EASE OF USAGE ══ -->
+    <section id="app-usage" class="doc-section" data-search="ease of usage context menu quick actions">
+      <div class="section-badge">Application</div>
+      <h2>Ease of Usage</h2>
+      <p>Beyond opening the app from your Start Menu or Applications folder, Snap Rename integrates directly into your system's file explorer for instant access.</p>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div><strong>Windows File Explorer:</strong> Select a folder, right-click, and select <code>Show Other Options</code> (Windows 11). Look for <strong>Snap Rename</strong> in the menu to open that directory instantly.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div><strong>macOS Finder:</strong> Select a folder, right-click, and navigate to <code>Quick Actions > Snap Rename</code>. The app will launch pre-loaded with your chosen files.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div><strong>Direct Launch:</strong> You can always launch the app via your system search (Spotlight, Start Menu, etc.) and use the <strong>Directory...</strong> button to browse for a folder.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ TERMINAL COMMANDS ══ -->
+    <section id="app-cli" class="doc-section" data-search="terminal commands cli srename troubleshooting path gui">
+      <div class="section-badge">Application</div>
+      <h2>Terminal Commands (CLI)</h2>
+      <p>For power users and developers, the <code>srename</code> command is provided system-wide after installation. This allows you to launch the renamer directly from your terminal or include it in scripts.</p>
+
+      <div class="option-table">
+        <div class="opt-row">
+          <div class="opt-name"><code>-d [path]</code></div>
+          <div class="opt-desc">Specifies the <strong>Working Directory</strong> to load on launch.</div>
+          <div class="opt-example"><code>srename -d ~/Downloads</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name"><code>--gui</code></div>
+          <div class="opt-desc">Forces the <strong>Desktop GUI</strong> to open. Without this flag, the TUI is preferred.</div>
+          <div class="opt-example"><code>srename --gui</code></div>
+        </div>
+      </div>
+
+      <div class="callout callout-warn" id="cli-troubleshooting">
+        <strong>CLI Troubleshooting:</strong>
+        <ul>
+          <li><strong>"command not found: srename":</strong> Ensure your <code>PATH</code> includes the installation directory (usually handled by the installer).</li>
+          <li><strong>Python Errors:</strong> If running from source, ensure <code>PyQt6</code> and <code>textual</code> are installed in your active environment.</li>
+          <li><strong>Permission Denied:</strong> On Linux/macOS, you may need to grant execution permissions: <code>chmod +x srename</code>.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ══ TERMINAL INTERFACE ══ -->
+    <section id="app-tui" class="doc-section" data-search="terminal interface tui textual command palette shortcuts keys">
+      <div class="section-badge">Application</div>
+      <h2>Terminal Interface (TUI)</h2>
+      <p>Snap Rename features a high-performance Terminal User Interface (TUI) built with the <strong>Textual</strong> framework, mirroring the full functionality of the GUI. It's designed for keyboard-centric workflows, offering lightning-fast navigation without the need for a mouse.</p>
+
+      <div class="video-block">
+        <div class="video-label">TUI Interface Overview</div>
+        <img src="Pics/Tui looks.png" alt="Snap Rename TUI Interface" style="width:100%">
+      </div>
+
+      <h3>Keyboard Shortcuts</h3>
+      <p>Mastering these shortcuts allows for lightning-fast batch renaming without touching a mouse:</p>
+
+      <table class="tag-table">
+        <thead><tr><th>Key</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td><code>d</code></td><td><strong>Directory</strong>: Open a modal to change the working folder</td></tr>
+          <tr><td><code>p</code></td><td><strong>+Pipeline</strong>: Add the current tool settings to the active pipeline</td></tr>
+          <tr><td><code>a</code></td><td><strong>Apply</strong>: Run the entire pipeline on every file in the directory</td></tr>
+          <tr><td><code>u</code></td><td><strong>Undo</strong>: Revert the last batch rename operation</td></tr>
+          <tr><td><code>c</code></td><td><strong>Clear</strong>: Remove all steps from the current pipeline</td></tr>
+          <tr><td><code>r</code></td><td><strong>Remove Step</strong>: Delete the last added operation from the pipeline</td></tr>
+          <tr><td><code>1</code> - <code>6</code></td><td><strong>Switch Tools</strong>: Quickly jump between Clean, Smart, Normal, etc.</td></tr>
+          <tr><td><code>q</code></td><td><strong>Quit</strong>: Exit the application safely</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout-info">
+        <strong>Live Preview:</strong> All TUI operations generate the same live previews as the GUI, highlighting pending changes in bold red before generating files.
+      </div>
+
+      <p>The TUI is meticulously optimized for cross-platform terminal compatibility, including support for Windows CMD, PowerShell, and various Linux/macOS shells.</p>
+
+      <h3>Command Palette & Shortcuts</h3>
+      <p>Snap Rename includes built-in "Spotlight" style searching to help you navigate features and documentation quickly.</p>
+
+      <div class="video-block">
+        <div class="video-label">TUI Command Palette</div>
+        <img src="Pics/Command palette.png" alt="TUI Command Palette" style="width:100%">
+      </div>
+
+      <p>In the Terminal UI, you can trigger the <strong>Command Palette</strong> by pressing <code>Ctrl + P</code> (or <code>Cmd + P</code> on macOS) or by clicking the small circle icon in the top-left corner.</p>
+      <ul>
+        <li><strong>Search Actions:</strong> Type the name of any tool (e.g., "Smart", "Clean") or action (e.g., "Apply", "Undo") to jump to it instantly.</li>
+        <li><strong>No Shortcuts Needed:</strong> If you forget a keyboard binding, the palette lists all available commands in a searchable list, making the app accessible even without memorizing keys.</li>
+      </ul>
+
+      <div class="video-block">
+        <div class="video-label">Palette Aesthetics</div>
+        <img src="Pics/Palette looks.png" alt="TUI Palette Design" style="width:100%">
+      </div>
+
+      <div class="callout callout-tip">
+        <strong>Pro Tip:</strong> Build complex, multi-step renaming rules by stacking operations. The TUI recalculates the entire chain in real-time.
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════ TOOLS ══════════════════════════════════ -->
+
+    <!-- ══ ENHANCED CLEAN ══ -->
+    <section id="clean" class="doc-section" data-search="clean spaces duplicates special numbers letters casing normalize dashes underscores capitalize uppercase lowercase">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Enhanced Clean Filename</h2>
+      <p>A one-stop cleanup tool that removes unwanted content and normalises filenames. Options can be combined.</p>
+
+      <div class="option-table">
+        <div class="opt-row">
+          <div class="opt-name">Remove Extra Spaces</div>
+          <div class="opt-desc">Collapses multiple consecutive spaces, underscores, or dashes into one. Trims leading/trailing spaces.</div>
+          <div class="opt-example"><code>My__File  Name.jpg</code> → <code>My_File Name.jpg</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Remove Duplicate Words</div>
+          <div class="opt-desc">Removes repeated words (case-insensitive) that appear consecutively in the filename stem.</div>
+          <div class="opt-example"><code>photo photo summer.jpg</code> → <code>photo summer.jpg</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Remove Special Characters</div>
+          <div class="opt-desc">Strips all characters that aren't alphanumeric, spaces, underscores, or hyphens.</div>
+          <div class="opt-example"><code>IMG@2024!.jpg</code> → <code>IMG2024.jpg</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Remove All Numbers</div>
+          <div class="opt-desc">Deletes every digit from the filename stem.</div>
+          <div class="opt-example"><code>Track01.mp3</code> → <code>Track.mp3</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Remove All Letters</div>
+          <div class="opt-desc">Deletes every alphabetical character from the filename stem.</div>
+          <div class="opt-example"><code>Track01.mp3</code> → <code>01.mp3</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Normalize Format → Spaces</div>
+          <div class="opt-desc">Replaces all underscores and dashes with spaces.</div>
+          <div class="opt-example"><code>my_file-name.txt</code> → <code>my file name.txt</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Normalize Format → Dashes</div>
+          <div class="opt-desc">Replaces all spaces and underscores with dashes.</div>
+          <div class="opt-example"><code>my file_name.txt</code> → <code>my-file-name.txt</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Normalize Format → Underscores</div>
+          <div class="opt-desc">Replaces all spaces and dashes with underscores.</div>
+          <div class="opt-example"><code>my file-name.txt</code> → <code>my_file_name.txt</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Casing → Capitalize First Letters</div>
+          <div class="opt-desc">Title-cases every word in the filename stem.</div>
+          <div class="opt-example"><code>my summer photo.jpg</code> → <code>My Summer Photo.jpg</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Casing → Uppercase</div>
+          <div class="opt-desc">Converts the entire filename stem to uppercase.</div>
+          <div class="opt-example"><code>invoice.pdf</code> → <code>INVOICE.pdf</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Casing → Lowercase</div>
+          <div class="opt-desc">Converts the entire filename stem to lowercase.</div>
+          <div class="opt-example"><code>INVOICE_FINAL.pdf</code> → <code>invoice_final.pdf</code></div>
+        </div>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Enhanced Clean Filename</div>
+        <video controls preload="metadata">
+          <source src="Videos/modal_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ SMART FIND & REPLACE ══ -->
+    <section id="smart" class="doc-section" data-search="smart find replace pattern regex action remove replace insert standardize extract">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Smart Find & Replace</h2>
+      <p>The most powerful tool in Snap Rename. Select a <strong>Find Pattern</strong> (what to target) and an <strong>Action</strong> (what to do with it). The pattern options cover 21 built-in detectors as well as custom regex.</p>
+
+      <div class="callout callout-info">The live preview at the bottom of the tool pane always shows the result for the currently selected file (or the first file if none is selected).</div>
+
+      <div class="video-block">
+        <div class="video-label">Smart Find & Replace Overview</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══════ PATTERNS ══════ -->
+
+    <section id="patterns-numbers" class="doc-section pattern-section" data-search="numbers digits remove replace pattern">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>1. Numbers</h3>
+      <p>Targets every sequence of digits (<code>\d+</code>) in the filename stem.</p>
+      <div class="example-row">
+        <span class="ex-in">Track<mark>01</mark>_Summer<mark>2024</mark>.mp3</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Track_Summer.mp3</span>
+        <span class="ex-action">Remove</span>
+      </div>
+      <div class="example-row">
+        <span class="ex-in">IMG_<mark>001</mark>.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">IMG_NUM.jpg</span>
+        <span class="ex-action">Replace With "NUM"</span>
+      </div>
+    </section>
+
+    <section id="patterns-letters" class="doc-section pattern-section" data-search="letters alphabet characters remove">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>2. Letters</h3>
+      <p>Targets every sequence of alphabetical characters (<code>[a-zA-Z]+</code>).</p>
+      <div class="example-row">
+        <span class="ex-in"><mark>Track</mark>01.mp3</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">01.mp3</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-spaces" class="doc-section pattern-section" data-search="spaces whitespace remove replace">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>3. Spaces</h3>
+      <p>Targets every single space character.</p>
+      <div class="example-row">
+        <span class="ex-in">My<mark> </mark>Summer<mark> </mark>Photo.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">My_Summer_Photo.jpg</span>
+        <span class="ex-action">Replace With "_"</span>
+      </div>
+    </section>
+
+    <section id="patterns-special" class="doc-section pattern-section" data-search="special characters symbols remove strip">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>4. Special Characters</h3>
+      <p>Targets any character that is not alphanumeric, a space, an underscore, or a dash (<code>[^\w\s-]</code>).</p>
+      <div class="example-row">
+        <span class="ex-in">IMG<mark>@</mark>2024<mark>!</mark>.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">IMG2024.jpg</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-dates" class="doc-section pattern-section" data-search="dates year month day timestamp">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>5. Dates</h3>
+      <p>Targets common date patterns: <code>YYYYMMDD</code>, <code>YYYY-MM-DD</code>, <code>YYYY_MM_DD</code>.</p>
+      <div class="example-row">
+        <span class="ex-in">photo_<mark>2024-07-15</mark>_holiday.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">photo_holiday.jpg</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-brackets" class="doc-section pattern-section" data-search="brackets parentheses curly angle square remove">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>6. Brackets / Parentheses</h3>
+      <p>Targets content inside <code>[]</code>, <code>()</code>, <code>{}</code>, or <code>&lt;&gt;</code> — including the brackets themselves.</p>
+      <div class="example-row">
+        <span class="ex-in">Movie <mark>(2023)</mark> <mark>[BluRay]</mark>.mkv</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Movie .mkv</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-consec" class="doc-section pattern-section" data-search="consecutive spaces multiple double triple whitespace">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>7. Consecutive Spaces</h3>
+      <p>Targets runs of 2 or more spaces (<code> {2,}</code>), leaving single spaces intact.</p>
+      <div class="example-row">
+        <span class="ex-in">My<mark>   </mark>File.txt</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">My File.txt</span>
+        <span class="ex-action">Replace With " "</span>
+      </div>
+    </section>
+
+    <section id="patterns-underdash" class="doc-section pattern-section" data-search="underscores dashes hyphens separators">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>8. Underscores / Dashes</h3>
+      <p>Targets one or more consecutive underscores or dashes (<code>[_-]+</code>).</p>
+      <div class="example-row">
+        <span class="ex-in">my<mark>_</mark>file<mark>--</mark>name.txt</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">my file name.txt</span>
+        <span class="ex-action">Replace With " "</span>
+      </div>
+    </section>
+
+    <section id="patterns-ext" class="doc-section pattern-section" data-search="file extension suffix rename change remove">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>9. File Extension</h3>
+      <p>Targets the file extension (e.g., <code>.mp3</code>). Use <strong>Remove</strong> to strip it, or <strong>Replace With</strong> to change it to a new extension.</p>
+      <div class="example-row">
+        <span class="ex-in">audio<mark>.mp3</mark></span>
+        <span class="arrow">→</span>
+        <span class="ex-out">audio.flac</span>
+        <span class="ex-action">Replace With ".flac"</span>
+      </div>
+      <div class="callout callout-warn">Changing extensions doesn't convert file formats — it simply renames the extension string.</div>
+    </section>
+
+    <section id="patterns-nonascii" class="doc-section pattern-section" data-search="non ascii unicode special unicode characters foreign accents">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>10. Non-ASCII Characters</h3>
+      <p>Targets any character outside the standard ASCII range (code points above 127) — e.g., accented letters, Chinese characters, emoji.</p>
+      <div class="example-row">
+        <span class="ex-in">résumé_<mark>📄</mark>.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">rsum_.pdf</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-leadtrail" class="doc-section pattern-section" data-search="leading trailing spaces whitespace trim">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>11. Leading / Trailing Spaces</h3>
+      <p>Targets spaces at the very start or end of the filename stem. Use <strong>Remove</strong> to strip them.</p>
+      <div class="example-row">
+        <span class="ex-in"><mark>  </mark>Invoice<mark>  </mark>.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Invoice.pdf</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-leadnums" class="doc-section pattern-section" data-search="leading numbers prefix digits remove strip">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>12. Leading Numbers</h3>
+      <p>Targets digits (and optional separator) at the very start of the filename stem (<code>^\d+[\s_-]*</code>).</p>
+      <div class="example-row">
+        <span class="ex-in"><mark>01_</mark>Track Name.mp3</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Track Name.mp3</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-trailnums" class="doc-section pattern-section" data-search="trailing numbers suffix digits remove strip">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>13. Trailing Numbers</h3>
+      <p>Targets digits (and optional separator) at the very end of the filename stem (<code>[\s_-]*\d+$</code>).</p>
+      <div class="example-row">
+        <span class="ex-in">Photo<mark> 02</mark>.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Photo.jpg</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-leadunder" class="doc-section pattern-section" data-search="leading trailing underscores trim strip">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>14. Leading / Trailing Underscores</h3>
+      <p>Targets underscores at the very beginning or end of the filename stem (<code>^_+|_+$</code>).</p>
+      <div class="example-row">
+        <span class="ex-in"><mark>_</mark>filename<mark>__</mark>.txt</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">filename.txt</span>
+        <span class="ex-action">Remove</span>
+      </div>
+    </section>
+
+    <section id="patterns-capcap" class="doc-section pattern-section" data-search="capitalize first letter title case word">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>15. Capitalize First Letter</h3>
+      <p>Capitalizes only the very first character of the filename stem, leaving the rest unchanged.</p>
+      <div class="example-row">
+        <span class="ex-in">my document.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">My document.pdf</span>
+        <span class="ex-action">Standardize</span>
+      </div>
+    </section>
+
+    <section id="patterns-upper" class="doc-section pattern-section" data-search="uppercase all letters caps">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>16. Uppercase All Letters</h3>
+      <p>Converts every letter in the filename stem to uppercase.</p>
+      <div class="example-row">
+        <span class="ex-in">invoice_final.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">INVOICE_FINAL.pdf</span>
+        <span class="ex-action">Standardize</span>
+      </div>
+    </section>
+
+    <section id="patterns-lower" class="doc-section pattern-section" data-search="lowercase all letters small">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>17. Lowercase All Letters</h3>
+      <p>Converts every letter in the filename stem to lowercase.</p>
+      <div class="example-row">
+        <span class="ex-in">INVOICE_FINAL.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">invoice_final.pdf</span>
+        <span class="ex-action">Standardize</span>
+      </div>
+    </section>
+
+    <section id="patterns-swap" class="doc-section pattern-section" data-search="swap words reverse order first second">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>18. Swap Words</h3>
+      <p>Swaps the first and second word of the filename stem (separated by space, underscore, or dash).</p>
+      <div class="example-row">
+        <span class="ex-in">Smith_John.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">John_Smith.pdf</span>
+        <span class="ex-action">Standardize</span>
+      </div>
+    </section>
+
+    <section id="patterns-charpos" class="doc-section pattern-section" data-search="character position insert specific index 1-based stem extension">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>19. Character Position</h3>
+      <p>Inserts text at a specific 1-based character position within the filename. When adding to the pipeline, a dialog asks whether the position counts characters in the <strong>stem only</strong> or the <strong>full filename</strong> (including extension).</p>
+
+      <div class="callout callout-warn">If the position you enter is greater than the length of the target string, a warning modal appears and the operation is not added.</div>
+
+      <div class="example-row">
+        <span class="ex-in">Photo.png</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Phohito.png</span>
+        <span class="ex-action">Insert "hi" at position 3 (stem)</span>
+      </div>
+      <div class="example-row">
+        <span class="ex-in">Photo.png</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Ph_oto.png</span>
+        <span class="ex-action">Insert "_" at position 2 (stem)</span>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Character Position Insert</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <section id="patterns-exact" class="doc-section pattern-section" data-search="custom exact literal text phrase find">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>20. Custom Exact</h3>
+      <p>Enter any literal text string to match. All occurrences in the filename stem are targeted. No special regex characters are interpreted.</p>
+      <div class="example-row">
+        <span class="ex-in">IMG_<mark>FINAL</mark>_v2_<mark>FINAL</mark>.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">IMG__v2_.jpg</span>
+        <span class="ex-action">Remove "FINAL"</span>
+      </div>
+    </section>
+
+    <section id="patterns-regex" class="doc-section pattern-section" data-search="custom regex regular expression pattern advanced">
+      <div class="section-badge pattern-badge">Smart Pattern</div>
+      <h3>21. Custom Regex</h3>
+      <p>Write any valid JavaScript regular expression. The pattern is applied globally to the filename stem. If the regex is invalid, the operation is skipped gracefully.</p>
+      <div class="example-row">
+        <span class="ex-in">Track<mark>-</mark>001<mark>-</mark>Summer.mp3</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Track_001_Summer.mp3</span>
+        <span class="ex-action">Regex <code>-</code> → Replace With "_"</span>
+      </div>
+      <div class="example-row">
+        <span class="ex-in">photo_<mark>v2024</mark>.jpg</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">photo_.jpg</span>
+        <span class="ex-action">Regex <code>v\d{4}</code> → Remove</span>
+      </div>
+    </section>
+
+    <!-- ══ ACTIONS ══ -->
+    <section id="actions" class="doc-section" data-search="actions remove replace insert before after standardize extract stem extension">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Smart Find & Replace — Actions</h2>
+      <p>Once you've chosen a Find Pattern, select what to do with it:</p>
+
+      <div class="option-table">
+        <div class="opt-row">
+          <div class="opt-name">Remove</div>
+          <div class="opt-desc">Deletes every match from the filename stem.</div>
+          <div class="opt-example"><code>Track 01 Mix.mp3</code> → <code>Track  Mix.mp3</code> (Remove Numbers)</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Replace With</div>
+          <div class="opt-desc">Substitutes every match with the text you enter in the replacement field.</div>
+          <div class="opt-example"><code>my file.txt</code> → <code>my_file.txt</code> (Spaces → Replace With "_")</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Insert Before</div>
+          <div class="opt-desc">Inserts the replacement text immediately <em>before</em> each match.</div>
+          <div class="opt-example"><code>001.mp3</code> → <code>[001].mp3</code> (Numbers → Insert Before "[")</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Insert After</div>
+          <div class="opt-desc">Inserts the replacement text immediately <em>after</em> each match.</div>
+          <div class="opt-example"><code>001.mp3</code> → <code>001].mp3</code> (Numbers → Insert After "]")</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Standardize</div>
+          <div class="opt-desc">Used with casing patterns (Capitalize First Letter, Uppercase, Lowercase, Swap Words). Applies the casing transformation.</div>
+          <div class="opt-example"><code>hello world.txt</code> → <code>Hello World.txt</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Extract</div>
+          <div class="opt-desc">Keeps <em>only</em> the matched portions, discarding everything else from the stem.</div>
+          <div class="opt-example"><code>abc123def456.txt</code> → <code>123456.txt</code> (Extract Numbers)</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Insert (Stem Only)</div>
+          <div class="opt-desc">Used with Character Position. Inserts text at position N counting only within the filename stem (not the extension).</div>
+          <div class="opt-example"><code>Photo.png</code> → <code>Phohito.png</code> (pos 3, insert "hi")</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Insert (with Extension)</div>
+          <div class="opt-desc">Used with Character Position. Inserts text at position N counting from the very start of the full filename including the extension.</div>
+          <div class="opt-example"><code>Photo.png</code> → <code>Pho[to.png</code> (pos 3, insert "[")</div>
+        </div>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Actions Demo</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ NORMAL FIND & REPLACE ══ -->
+    <section id="normal" class="doc-section" data-search="normal find replace text literal phrase case sensitive">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Normal Find & Replace</h2>
+      <p>A simple, literal text replacement. No patterns or regex — just type what you want to find and what to replace it with.</p>
+
+      <div class="option-table">
+        <div class="opt-row">
+          <div class="opt-name">Find</div>
+          <div class="opt-desc">The exact text to search for in the filename stem. All occurrences are replaced.</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Replace With</div>
+          <div class="opt-desc">What to substitute each match with. Leave blank to delete the matched text.</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Case Sensitive</div>
+          <div class="opt-desc">When checked, "Card" and "card" are treated as different. When unchecked, both match.</div>
+        </div>
+      </div>
+
+      <div class="example-row">
+        <span class="ex-in">Aadhar <mark>Card</mark>.pdf</span>
+        <span class="arrow">→</span>
+        <span class="ex-out">Aadhar TEST.pdf</span>
+        <span class="ex-action">Find "Card" → Replace "TEST"</span>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Normal Find & Replace</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ PREFIX / SUFFIX ══ -->
+    <section id="presuf" class="doc-section" data-search="prefix suffix add before after name">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Prefix / Suffix</h2>
+      <p>Add constant text to the beginning (prefix) and/or end (suffix) of every filename stem. The extension is never affected.</p>
+
+      <div class="option-table">
+        <div class="opt-row">
+          <div class="opt-name">Prefix Add</div>
+          <div class="opt-desc">Text inserted before the filename stem.</div>
+          <div class="opt-example">Prefix "2024_" → <code>Photo.jpg</code> → <code>2024_Photo.jpg</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Suffix Add</div>
+          <div class="opt-desc">Text appended after the filename stem (before the extension).</div>
+          <div class="opt-example">Suffix " (Final)" → <code>Report.pdf</code> → <code>Report (Final).pdf</code></div>
+        </div>
+      </div>
+
+      <div class="callout callout-tip">Both fields can be filled simultaneously to add a prefix and suffix in one step.</div>
+
+      <div class="video-block">
+        <div class="video-label">Prefix / Suffix</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ SEQUENTIAL NUMBERING ══ -->
+    <section id="numbering" class="doc-section" data-search="sequential numbering number counter prefix suffix front end padding base name">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Sequential Numbering</h2>
+      <p>Automatically append or prepend an incrementing number to each file, perfect for ordering photos, tracks, or scans.</p>
+
+      <div class="option-table">
+        <div class="opt-row">
+          <div class="opt-name">Placement</div>
+          <div class="opt-desc"><strong>At Front</strong> — number comes before the name. <strong>At End</strong> — number comes after the name.</div>
+          <div class="opt-example">At Front: <code>001_Track.mp3</code> / At End: <code>Track_001.mp3</code></div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Base Name</div>
+          <div class="opt-desc">If filled, replaces the original filename stem for all files. Leave blank to keep each file's original name.</div>
+          <div class="opt-example">Base "Photo" → <code>Photo_001.jpg</code>, <code>Photo_002.jpg</code>…</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Start</div>
+          <div class="opt-desc">The number to begin counting from. Default is 1.</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-name">Pad</div>
+          <div class="opt-desc">Minimum digit width, zero-padded. Pad 3 = <code>001</code>, <code>002</code>… Pad 1 = <code>1</code>, <code>2</code>…</div>
+        </div>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Sequential Numbering</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ METADATA ══ -->
+    <section id="metadata" class="doc-section" data-search="metadata smart template tags audio images video movies tv shows podcasts books scanned documents artist album track title year">
+      <div class="section-badge">Rename Tools</div>
+      <h2>Extended Smart Metadata</h2>
+      <p>Build filenames from a template using smart tags that pull information from the file itself (or heuristically parsed from the existing name). Choose a preset or write your own template.</p>
+
+      <h3>Preset Categories</h3>
+      <div class="preset-grid">
+        <div class="preset-card">
+          <div class="preset-name">🎵 Audio / Songs</div>
+          <div class="preset-tpl"><code>{artist}_{album}_{track} - {title}</code></div>
+          <div class="preset-exts">.mp3 .flac .wav .m4a .aac</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">🖼️ Images</div>
+          <div class="preset-tpl"><code>{original}_{camera}_{resolution}</code></div>
+          <div class="preset-exts">.jpg .jpeg .png .tiff</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">🎬 Videos</div>
+          <div class="preset-tpl"><code>{original}_{resolution}_{codec}</code></div>
+          <div class="preset-exts">.mp4 .mov .mkv .avi</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">🎦 Movies</div>
+          <div class="preset-tpl"><code>{title} ({year}) {resolution}</code></div>
+          <div class="preset-exts">.mp4 .mov .mkv .avi</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">📺 TV Shows</div>
+          <div class="preset-tpl"><code>{show} {season}{episode} - {title}</code></div>
+          <div class="preset-exts">.mp4 .mkv</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">🎙️ Podcasts</div>
+          <div class="preset-tpl"><code>{title} - E{track} - {year}</code></div>
+          <div class="preset-exts">.mp3 .aac</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">📚 Books / PDFs</div>
+          <div class="preset-tpl"><code>{author} - {title} ({year})</code></div>
+          <div class="preset-exts">.pdf .epub .mobi</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">🗒️ Scanned Documents</div>
+          <div class="preset-tpl"><code>Scan_{original}_{created}</code></div>
+          <div class="preset-exts">.pdf .tiff</div>
+        </div>
+        <div class="preset-card">
+          <div class="preset-name">📁 All Files</div>
+          <div class="preset-tpl"><code>{original}_{modified}</code></div>
+          <div class="preset-exts">All types</div>
+        </div>
+      </div>
+
+      <div class="video-block">
+        <div class="video-label">Smart Metadata</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+
+
+    <!-- ══ APPLY RENAMES ══ -->
+    <section id="apply" class="doc-section" data-search="apply rename all selected conflict copies confirm modal">
+      <div class="section-badge">Apply & Undo</div>
+      <h2>Applying Renames</h2>
+      <p>When you're satisfied with the preview, click <strong>"Apply Active Renames"</strong>.</p>
+
+      <div class="steps">
+        <div class="step"><span class="step-num">1</span><div>If <strong>some files are selected</strong>: a dialog asks whether to rename only those files or all files.</div></div>
+        <div class="step"><span class="step-num">2</span><div>If <strong>no selection</strong>: a confirmation modal asks you to confirm renaming all files in the workspace.</div></div>
+        <div class="step"><span class="step-num">3</span><div>Each rename creates a <strong>new file with the new name</strong> containing the original file's data, then <strong>deletes the old file</strong>. This ensures compatibility with the browser's File System Access API.</div></div>
+        <div class="step"><span class="step-num">4</span><div>A success modal reports how many files were renamed and how many (if any) failed.</div></div>
+        <div class="step"><span class="step-num">5</span><div>The pipeline is <strong>automatically cleared</strong> after a successful rename.</div></div>
+      </div>
+
+      <h3>Conflict Resolution</h3>
+      <p>If two files would end up with the same name, the second one is automatically renamed with a numeric suffix (e.g., <code>file(1).txt</code>, <code>file(2).txt</code>) so no data is ever lost.</p>
+
+      <div class="video-block">
+        <div class="video-label">Applying Renames</div>
+        <video controls preload="metadata">
+          <source src="Videos/rename_demo.mp4" type="video/mp4">
+          <p class="no-video">Video coming soon.</p>
+        </video>
+      </div>
+    </section>
+
+    <!-- ══ UNDO ══ -->
+    <section id="undo" class="doc-section" data-search="undo revert reverse last batch rename">
+      <div class="section-badge">Apply & Undo</div>
+      <h2>Undo</h2>
+      <p>Click <strong>"Undo Last Rename"</strong> at any time after applying a batch to revert all renamed files back to their original names.</p>
+      <ul>
+        <li>Undo is tracked <strong>per session</strong> — it only works while the page is open.</li>
+        <li>Only <strong>one level</strong> of undo is supported (the most recent batch).</li>
+        <li>Undo works the same way as rename: creates the old-named file, copies content, deletes the new-named file.</li>
+      </ul>
+      <div class="callout callout-warn">Refreshing or closing the page clears the undo history. Always verify your rename preview before applying.</div>
+    </section>
+
+    <!-- ══ DRAG & DROP ══ -->
+    <section id="dragdrop" class="doc-section" data-search="drag drop files import add copy conflict">
+      <div class="section-badge">Apply & Undo</div>
+      <h2>Drag & Drop</h2>
+      <p>You can drag files from Finder (or any file manager) directly into the file table area to copy them into the current workspace.</p>
+      <ul>
+        <li>If a file with the same name already exists you'll be asked whether to <strong>replace</strong> it or <strong>keep both</strong> (the copy is renamed with a suffix like <code>filename copy 1.ext</code>).</li>
+        <li>Dropped files are immediately added to the workspace and show up in the table.</li>
+      </ul>
+      <div class="callout callout-info">You must have a workspace folder selected before dragging files in.</div>
+    </section>
+
+    <!-- ══ METADATA TAGS REF ══ -->
+    <section id="metadata-tags" class="doc-section" data-search="template tags artist album track title year genre show season episode author camera resolution original modified created size_kb exif_date codec duration">
+      <div class="section-badge">Reference</div>
+      <h2>Metadata Tags Reference</h2>
+      <p>All available tags for use in the Metadata template field:</p>
+      <table class="tag-table">
+        <thead><tr><th>Tag</th><th>Description</th><th>Example value</th></tr></thead>
+        <tbody>
+          <tr><td><code>{original}</code></td><td>The original filename stem</td><td>Track01</td></tr>
+          <tr><td><code>{type}</code></td><td>File type category</td><td>Audio</td></tr>
+          <tr><td><code>{created}</code></td><td>File creation date (DD/MM/YYYY)</td><td>01/01/2024</td></tr>
+          <tr><td><code>{modified}</code></td><td>Last modified date (DD/MM/YYYY)</td><td>15/07/2024</td></tr>
+          <tr><td><code>{size_kb}</code></td><td>File size in kilobytes</td><td>4096</td></tr>
+          <tr><td><code>{year}</code></td><td>Year extracted from last modified date</td><td>2024</td></tr>
+          <tr><td><code>{title}</code></td><td>Track/document title (parsed from name)</td><td>Summer Vibes</td></tr>
+          <tr><td><code>{artist}</code></td><td>Artist name (parsed from audio filename)</td><td>Drake</td></tr>
+          <tr><td><code>{album}</code></td><td>Album name (parsed from audio filename)</td><td>Certified Lover Boy</td></tr>
+          <tr><td><code>{track}</code></td><td>Track number (parsed from leading digits)</td><td>03</td></tr>
+          <tr><td><code>{genre}</code></td><td>Music genre</td><td>Hip-Hop</td></tr>
+          <tr><td><code>{duration}</code></td><td>Media duration</td><td>3:42</td></tr>
+          <tr><td><code>{show}</code></td><td>TV show name (parsed from filename)</td><td>Breaking Bad</td></tr>
+          <tr><td><code>{season}</code></td><td>Season (parsed from S01E01 pattern)</td><td>S03</td></tr>
+          <tr><td><code>{episode}</code></td><td>Episode (parsed from S01E01 pattern)</td><td>E07</td></tr>
+          <tr><td><code>{author}</code></td><td>Book/document author</td><td>George Orwell</td></tr>
+          <tr><td><code>{camera}</code></td><td>Camera model</td><td>iPhone 15 Pro</td></tr>
+          <tr><td><code>{resolution}</code></td><td>Video/image resolution</td><td>1080p</td></tr>
+          <tr><td><code>{exif_date}</code></td><td>EXIF date (falls back to created)</td><td>12/06/2024</td></tr>
+          <tr><td><code>{codec}</code></td><td>Video codec</td><td>h264</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ══ GITHUB ══ -->
+    <section id="github" class="doc-section" data-search="github open source code satvik chatrooms snap rename">
+      <div class="section-badge">Open Source</div>
+      <h2>GitHub Repository</h2>
+      <p>Snap Rename is a powerful open-source project. You can explore the complete codebase, report issues, and contribute on GitHub:</p>
+      
+      <p style="margin: 1.5rem 0;">
+        <a href="https://github.com/Satvik-web/Snap-Rename" target="_blank" style="padding: 10px 20px; background: #6c63ff; color: white; border-radius: 6px; text-decoration: none; font-weight: 600; display: inline-block;">View Snap Rename on GitHub</a>
+      </p>
+
+      <div class="callout callout-info" style="margin-top: 2rem;">
+        <strong>Explore other projects:</strong> Check out the <a href="https://github.com/Satvik-web/Satvik-ChatRooms" target="_blank" style="color: inherit; text-decoration: underline;"><strong>Satvik-ChatRooms</strong></a> repository for a modern, real-time chat application built with the same level of care and attention to detail!
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="doc-footer">
+      <p>Snap Rename — satvik-web &copy; 2026. Built with ❤️ as a cross platform open source tool.</p>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">↑ Back to top</a>
+    </footer>
+
+  </main>
+</div>
+
+<script src="search.js"></script>
+<script>
+  // Theme toggle
+  const btn = document.getElementById('theme-toggle');
+  const root = document.documentElement;
+  btn.addEventListener('click', () => {
+    root.classList.toggle('light');
+    btn.textContent = root.classList.contains('light') ? '🌙' : '☀️';
+    localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
+  });
+  if (localStorage.getItem('theme') === 'light') { root.classList.add('light'); btn.textContent = '🌙'; }
+
+  // Active nav highlight on scroll
+  const sections = document.querySelectorAll('.doc-section[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-20% 0px -60% 0px', threshold: 0 });
+  sections.forEach(s => observer.observe(s));
+
+  // Keyboard shortcut
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+      e.preventDefault();
+      document.getElementById('search-input').focus();
+    }
+  });
+</script>
+</body>
+</html>
